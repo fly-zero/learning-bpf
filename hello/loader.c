@@ -13,13 +13,12 @@ static void sigint_handler(int sig) {
     running = 0;
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     struct bpf_object *obj;
-    char *filename = argv[1];
     int trace_pipe_fd;
 
     // 初始化 BPF 程序
-    obj = bpf_object__open(filename);
+    obj = bpf_object__open("hello.o");
     if (libbpf_get_error(obj)) {
         fprintf(stderr, "Failed to open BPF object\n");
         exit(EXIT_FAILURE);
