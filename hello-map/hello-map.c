@@ -15,7 +15,7 @@ struct bpf_map_def SEC("maps") my_map = {
 
 /* 当 execve 系统调用被调用时，BPF 程序会被执行，将 execve 调用次数纪录在 map 中 */
 SEC("tracepoint/syscalls/sys_enter_execve")
-int bpf_prog1(void *ctx) {
+int bpf_prog(void *ctx) {
     int key = 0;
     int new_value, *old_value;
     old_value = bpf_map_lookup_elem(&my_map, &key);
