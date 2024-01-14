@@ -30,6 +30,20 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+    // 获取 prog
+    struct bpf_program * prog = bpf_object__find_program_by_name(obj, "bpf_prog");
+    if (!prog) {
+        fprintf(stderr, "Failed to find prog\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // 将 BPF 程序附加到 tracepoint
+    struct bpf_link *link = bpf_program__attach(prog);
+    if (!link) {
+        fprintf(stderr, "Failed to attach BPF program\n");
+        exit(EXIT_FAILURE);
+    }
+
     // 打开 trace_pipe
     trace_pipe_fd = open("/sys/kernel/debug/tracing/trace_pipe", O_RDONLY);
     if (trace_pipe_fd < 0) {
@@ -57,6 +71,9 @@ int main() {
 
     // 关闭 trace_pipe
     close(trace_pipe_fd);
+
+    // 销毁 link
+    bpf_link__destroy(link);
 
     // 卸载 BPF 程序
     bpf_object__unload(obj);
