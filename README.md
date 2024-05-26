@@ -22,3 +22,4 @@ apt install \
 
 * `hello` 第一个 bpf 程序，并使用 `libbpf` 开发了一个简单的加载器
 * `hello-map` 使用 bpf map 在内核与用户空间传递数据
+* `hello-bcc-python` 使用 BCC python 前端来加载 BPF 程序
