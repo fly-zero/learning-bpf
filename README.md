@@ -26,3 +26,4 @@ apt install \
 * `hello-map` 使用 bpf map 在内核与用户空间传递数据
 * `hello-bcc-python` 使用 BCC Python 前端来加载 BPF 程序
 * `hello-bcc-cxx` 使用 BCC C++ 前端来加载 BPF 程序
+* `hello-uprobe` BPF 用户空间探针程序，测量 a.out 的 main 函数执行时间
