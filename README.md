@@ -17,7 +17,8 @@ apt install \
     linux-tools-generic \
     linux-tools-`uname -r` \
     libbpfcc-dev \
-    llvm-dev
+    llvm-dev \
+    systemtap-sdt-dev
 ```
 
 ## Catalog
@@ -27,3 +28,4 @@ apt install \
 * `hello-bcc-python` 使用 BCC Python 前端来加载 BPF 程序
 * `hello-bcc-cxx` 使用 BCC C++ 前端来加载 BPF 程序
 * `hello-uprobe` BPF 用户空间探针程序，测量 a.out 的 main 函数执行时间
+* `hello-usdt` BPF 用户静态定义跟踪点程序
